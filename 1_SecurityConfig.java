@@ -28,6 +28,7 @@ public class SecurityConfig {
 		return http.build();
 	}
 /*
+// [Approach -1]: 
 // This doesn't contain default password encode hence we created nopassword encoder 
 // For default password encode see the bellow commented section 
 
@@ -43,7 +44,11 @@ public class SecurityConfig {
         return NoOpPasswordEncoder.getInstance();
     }
 	*/
-  //  --------------------------------- OR ---------------------------------
+  
+	
+	
+	
+  // [Approach-2]: 
   // With default password encoder
   /*
   
@@ -57,8 +62,20 @@ public class SecurityConfig {
   
   */
   
-  
-  
-  
+	
+	// [Approach-3]: 
+	/*
+	// Created Userdetails and then passed to InMemoryUserDetailsManager constructor then returned the object of InMemoryUserDetailsManager
+	
+	@Bean
+	public InMemoryUserDetailsManager userDetailsService() {
+   		InMemoryUserDetailsManager userDetailsService = new InMemoryUserDetailsManager();
+		UserDetails admin = User.withUsername("admin").password("12345").authorities("admin").build();
+		UserDetails user = User.withUsername("user").password("12345").authorities("read").build();
+		userDetailsService.createUser(admin);
+		userDetailsService.createUser(user);
+		return userDetailsService;
+	}
+	*/
 	
 }
