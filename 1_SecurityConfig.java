@@ -17,6 +17,10 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfig {
+	
+	
+	// Permited register and home url other urls must authenticated.
+	
 	@Bean
 	SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests((auth) -> auth.antMatchers("/register","/home").permitAll().anyRequest()
